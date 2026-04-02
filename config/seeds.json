@@ -137,5 +137,29 @@
     "platforms": ["rss"],
     "sector": "Tech Strategy",
     "rss_url": "https://www.ben-evans.com/benedictevans/rss.xml"
+  },
+  {
+    "id": 16,
+    "name": "VentureBeat AI",
+    "handle": "venturebeat",
+    "platforms": ["rss"],
+    "sector": "AI/Tech",
+    "rss_url": "https://venturebeat.com/category/ai/feed/"
+  },
+  {
+    "id": 17,
+    "name": "TechCrunch",
+    "handle": "techcrunch",
+    "platforms": ["rss"],
+    "sector": "Tech",
+    "rss_url": "https://techcrunch.com/feed/"
+  },
+  {
+    "id": 18,
+    "name": "The Verge",
+    "handle": "theverge",
+    "platforms": ["rss"],
+    "sector": "Tech",
+    "rss_url": "https://www.theverge.com/rss/index.xml"
   }
 ]

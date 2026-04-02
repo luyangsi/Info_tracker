@@ -223,6 +223,8 @@ Return ONLY:
   "kol_spotlights": [{{"kol": "name", "persistent_theme_en": "<string>", "persistent_theme_zh": "<string>", "position_shift": <bool>}}]
 }}
 
+CRITICAL: Return ONLY the JSON object. No metadata field. No extra fields beyond the schema above. No truncation.
+
 ## Input
 TODAY_BRIEFING: {TODAY_BRIEFING}
 HISTORICAL_BRIEFINGS: {HISTORICAL_BRIEFINGS}

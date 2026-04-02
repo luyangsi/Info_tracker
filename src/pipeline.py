@@ -31,8 +31,8 @@ load_dotenv()
 
 logger = logging.getLogger(__name__)
 
-_MODEL = "claude-opus-4-5"
-_MAX_TOKENS = 4096
+_MODEL = "claude-sonnet-4-6"
+_MAX_TOKENS = 16000
 _RATE_LIMIT_SLEEP = 3  # seconds between API calls
 
 HISTORY_DIR = Path(__file__).parent.parent / "data" / "history"
@@ -72,13 +72,10 @@ def _call_claude(system: str, user: str) -> dict[str, Any]:
         model=_MODEL,
         max_tokens=_MAX_TOKENS,
         system=system,
-        messages=[
-            {"role": "user", "content": user},
-            {"role": "assistant", "content": "{"},
-        ],
+        messages=[{"role": "user", "content": user}],
     )
 
-    raw_text: str = "{" + response.content[0].text
+    raw_text: str = response.content[0].text
 
     import re as _re
 
@@ -86,6 +83,20 @@ def _call_claude(system: str, user: str) -> dict[str, Any]:
         try:
             return json.loads(text)
         except json.JSONDecodeError:
+            pass
+        # \' is not a valid JSON escape; Claude sometimes emits it
+        sanitized = text.replace("\\'", "'")
+        try:
+            return json.loads(sanitized)
+        except json.JSONDecodeError:
+            pass
+        # Last resort: structured repair (handles unescaped quotes etc.)
+        try:
+            import json_repair as _jr
+            repaired = _jr.repair_json(sanitized)
+            result = json.loads(repaired)
+            return result if result else None
+        except Exception:
             return None
 
     # 1. Direct parse
@@ -97,7 +108,8 @@ def _call_claude(system: str, user: str) -> dict[str, Any]:
 
     # 2. Leading code fence (```json ... ``` or ``` ... ```)
     if stripped.startswith("```"):
-        inner = stripped.split("\n", 1)[-1].rsplit("```", 1)[0].strip()
+        after_open = stripped.split("\n", 1)[-1]  # drop the ```json line
+        inner = after_open.split("\n```", 1)[0].strip()  # stop at first closing fence
         result = _try_parse(inner)
         if result is not None:
             return result

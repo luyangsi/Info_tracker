@@ -15,7 +15,8 @@ import json
 import logging
 import os
 import re
-from datetime import datetime, timezone
+import datetime as _dt
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -42,10 +43,11 @@ _MAX_CONTENT_LEN = 2000
 
 
 def _clean_text(text: str) -> str:
-    """去除 HTML 标签、URL，并归一化空白字符。"""
+    """去除 HTML 标签、URL，并归一化空白字符。双引号替换为单引号以避免 Claude JSON 生成时的转义问题。"""
     text = _HTML_TAG_RE.sub("", text)
     text = _URL_RE.sub("", text)
     text = _WHITESPACE_RE.sub(" ", text).strip()
+    text = text.replace('"', "'")  # prevent unescaped " inside Claude-generated JSON strings
     return text
 
 
@@ -158,7 +160,8 @@ def fetch_youtube(kol: dict[str, Any], date_str: str) -> list[dict[str, Any]]:
             continue
 
         post_date = dt.strftime("%Y-%m-%d")
-        if post_date != date_str:
+        _cutoff = (_dt.date.fromisoformat(date_str) - timedelta(days=7)).isoformat()
+        if post_date < _cutoff or post_date > date_str:
             continue
 
         title: str = entry.get("title", "")
@@ -231,7 +234,8 @@ def fetch_wechat(kol: dict[str, Any], date_str: str) -> list[dict[str, Any]]:
             continue
 
         post_date = dt.strftime("%Y-%m-%d")
-        if post_date != date_str:
+        _cutoff = (_dt.date.fromisoformat(date_str) - timedelta(days=7)).isoformat()
+        if post_date < _cutoff or post_date > date_str:
             continue
 
         title: str = entry.get("title", "")
@@ -303,7 +307,8 @@ def fetch_rss(kol: dict[str, Any], date_str: str) -> list[dict[str, Any]]:
             continue
 
         post_date = dt.strftime("%Y-%m-%d")
-        if post_date != date_str:
+        _cutoff = (_dt.date.fromisoformat(date_str) - timedelta(days=7)).isoformat()
+        if post_date < _cutoff or post_date > date_str:
             continue
 
         title: str = entry.get("title", "")

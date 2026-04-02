@@ -155,7 +155,20 @@ def generate_trend_report(
         HISTORICAL_BRIEFINGS=json.dumps(history_briefs, ensure_ascii=False, indent=2),
     )
 
-    trend = _call_claude(system=SYSTEM_PROMPT, user=user_prompt)
+    try:
+        trend = _call_claude(system=SYSTEM_PROMPT, user=user_prompt)
+    except ValueError:
+        logger.warning("P5 Trend: Claude response was not valid JSON; using fallback trend dict.")
+        trend = {
+            "report_date": date_str,
+            "window": "7-day rolling",
+            "macro_signal": {
+                "en": "Insufficient data for trend analysis on day 1.",
+                "zh": "第一天运行，数据不足以生成趋势分析。",
+            },
+            "trends": [],
+            "kol_spotlights": [],
+        }
 
     n_trends = len(trend.get("trends", []))
     n_spotlights = len(trend.get("kol_spotlights", []))
