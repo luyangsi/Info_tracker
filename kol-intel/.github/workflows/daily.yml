@@ -1,0 +1,81 @@
+name: Daily KOL Intel
+
+on:
+  schedule:
+    # UTC 06:00 每日运行（北京时间 14:00）
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      date_override:
+        description: "回填日期（格式 YYYY-MM-DD，留空则使用今日）"
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: write   # 允许 git push 回 main 分支
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      RSSHUB_BASE_URL:   ${{ secrets.RSSHUB_BASE_URL }}
+      SENDGRID_API_KEY:  ${{ secrets.SENDGRID_API_KEY }}
+      DELIVERY_EMAIL:    ${{ secrets.DELIVERY_EMAIL }}
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so git push doesn't fail on shallow clone
+
+      # ── 2. Python setup ──────────────────────────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      # ── 3. Install dependencies ───────────────────────────────────────────
+      - name: Install dependencies
+        run: pip install --quiet -r requirements.txt
+
+      # ── 4. Run full pipeline ──────────────────────────────────────────────
+      # main.py reads: date_str = os.getenv("PIPELINE_DATE", datetime.date.today().isoformat())
+      # No continue-on-error: any exception in main.py fails the workflow loudly.
+      - name: Run KOL Intel pipeline
+        run: |
+          if [ -n "${{ inputs.date_override }}" ]; then
+            export PIPELINE_DATE="${{ inputs.date_override }}"
+            echo "Running backfill for date: $PIPELINE_DATE"
+          fi
+          python main.py
+
+      # ── 5. Commit and push outputs ────────────────────────────────────────
+      # git push failure is non-fatal (|| true) — pipeline result is already saved locally
+      # and uploaded as an artifact in step 6.
+      - name: Commit and push outputs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name  "kol-intel-bot"
+          git config user.email "bot@kol-intel"
+
+          git add outputs/
+          git diff --staged --quiet || (
+            git commit -m "chore: daily brief $(date +%Y-%m-%d) [skip ci]" &&
+            git push origin HEAD:main || true
+          )
+
+      # ── 6. Upload outputs as artifact (always, even on pipeline failure) ──
+      - name: Upload outputs as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kol-intel-${{ github.run_id }}
+          path: outputs/
+          retention-days: 30

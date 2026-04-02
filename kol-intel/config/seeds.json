@@ -1,0 +1,144 @@
+[
+  {
+    "id": 1,
+    "name": "Sam Altman",
+    "platforms": [
+      "x",
+      "linkedin"
+    ],
+    "sector": "AI"
+  },
+  {
+    "id": 2,
+    "name": "Andrej Karpathy",
+    "platforms": [
+      "x",
+      "youtube"
+    ],
+    "sector": "AI",
+    "youtube_handle": "AndrejKarpathy",
+    "youtube_channel_id": "UCXUPKJO5MZQN11PqgIvyuvQ",
+    "youtube_status": "unavailable"
+  },
+  {
+    "id": 3,
+    "name": "Yann LeCun",
+    "platforms": [
+      "x",
+      "linkedin"
+    ],
+    "sector": "AI"
+  },
+  {
+    "id": 4,
+    "name": "Andrew Ng",
+    "platforms": [
+      "x",
+      "linkedin",
+      "youtube"
+    ],
+    "sector": "AI",
+    "youtube_handle": "AndrewYNg",
+    "youtube_channel_id": "UC0nw93YVMDAuABkfDexpF2Q",
+    "youtube_status": "unavailable"
+  },
+  {
+    "id": 5,
+    "name": "Jensen Huang (NVIDIA)",
+    "platforms": [
+      "linkedin",
+      "youtube"
+    ],
+    "sector": "AI/Chips",
+    "youtube_channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+    "youtube_status": "unavailable"
+  },
+  {
+    "id": 6,
+    "name": "Marc Andreessen",
+    "platforms": [
+      "x"
+    ],
+    "sector": "VC"
+  },
+  {
+    "id": 7,
+    "name": "Paul Graham",
+    "platforms": [
+      "x"
+    ],
+    "sector": "Startup"
+  },
+  {
+    "id": 8,
+    "name": "Demis Hassabis",
+    "platforms": [
+      "x",
+      "linkedin"
+    ],
+    "sector": "AI"
+  },
+  {
+    "id": 9,
+    "name": "Li Feifei",
+    "platforms": [
+      "x",
+      "linkedin"
+    ],
+    "sector": "AI"
+  },
+  {
+    "id": 10,
+    "name": "Ray Dalio",
+    "platforms": [
+      "x",
+      "linkedin"
+    ],
+    "sector": "Finance"
+  },
+  {
+    "id": 11,
+    "name": "Howard Marks",
+    "platforms": [
+      "rss"
+    ],
+    "sector": "Finance",
+    "rss_url": "https://www.oaktreecapital.com/feed",
+    "rss_status": "unavailable"
+  },
+  {
+    "id": 12,
+    "name": "Michael Burry",
+    "platforms": [
+      "x"
+    ],
+    "sector": "Finance"
+  },
+  {
+    "id": 13,
+    "name": "Robin Li",
+    "platforms": [
+      "wechat"
+    ],
+    "sector": "AI/China",
+    "wechat_id": "baidu_xinzhi"
+  },
+  {
+    "id": 14,
+    "name": "Zhou Hongyi",
+    "platforms": [
+      "wechat"
+    ],
+    "sector": "Security/China",
+    "wechat_id": "qihu360"
+  },
+  {
+    "id": 15,
+    "name": "Wang Xiaochuan",
+    "platforms": [
+      "wechat"
+    ],
+    "sector": "AI/China",
+    "wechat_id": "baichuanAI"
+  }
+]
