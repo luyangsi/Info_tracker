@@ -65,7 +65,7 @@ jobs:
           git config user.name  "kol-intel-bot"
           git config user.email "bot@kol-intel"
 
-          git add outputs/
+          git add data/history/
           git diff --staged --quiet || (
             git commit -m "chore: daily brief $(date +%Y-%m-%d) [skip ci]" &&
             git push origin HEAD:main || true
