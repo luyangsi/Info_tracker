@@ -116,29 +116,26 @@
   },
   {
     "id": 13,
-    "name": "Robin Li",
-    "platforms": [
-      "wechat"
-    ],
-    "sector": "AI/China",
-    "wechat_id": "baidu_xinzhi"
+    "name": "Karpathy Blog",
+    "handle": "karpathy",
+    "platforms": ["rss"],
+    "sector": "AI",
+    "rss_url": "https://karpathy.github.io/feed.xml"
   },
   {
     "id": 14,
-    "name": "Zhou Hongyi",
-    "platforms": [
-      "wechat"
-    ],
-    "sector": "Security/China",
-    "wechat_id": "qihu360"
+    "name": "Paul Graham Essays",
+    "handle": "paulg",
+    "platforms": ["rss"],
+    "sector": "Startup/Tech",
+    "rss_url": "http://feeds.feedburner.com/PaulGrahamEssays"
   },
   {
     "id": 15,
-    "name": "Wang Xiaochuan",
-    "platforms": [
-      "wechat"
-    ],
-    "sector": "AI/China",
-    "wechat_id": "baichuanAI"
+    "name": "Benedict Evans Newsletter",
+    "handle": "benedictevans",
+    "platforms": ["rss"],
+    "sector": "Tech Strategy",
+    "rss_url": "https://www.ben-evans.com/benedictevans/rss.xml"
   }
 ]
