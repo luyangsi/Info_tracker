@@ -196,5 +196,38 @@
     "platforms": ["rss"],
     "sector": "Finance/Macro",
     "rss_url": "https://macromusings.libsyn.com/rss"
+  },
+  {
+    "id": 23,
+    "name": "Marginal Revolution (Tyler Cowen)",
+    "handle": "marginalrevolution",
+    "platforms": ["rss"],
+    "sector": "Economics/Macro",
+    "rss_url": "https://marginalrevolution.com/feed"
+  },
+  {
+    "id": 24,
+    "name": "Calculated Risk",
+    "handle": "calculatedrisk",
+    "platforms": ["rss"],
+    "sector": "Finance/Macro",
+    "rss_url": "https://www.calculatedriskblog.com/feeds/posts/default"
+  },
+  {
+    "id": 25,
+    "name": "Humble Dollar (Jonathan Clements)",
+    "handle": "humbledollar",
+    "platforms": ["rss"],
+    "sector": "Finance/Investing",
+    "rss_url": "https://humbledollar.com/feed/"
+  },
+  {
+    "id": 26,
+    "name": "CFA Institute Blog",
+    "handle": "cfainstitute",
+    "platforms": ["rss"],
+    "sector": "Finance/Professional",
+    "rss_url": "https://blogs.cfainstitute.org/feed/",
+    "rss_status": "unavailable"
   }
 ]

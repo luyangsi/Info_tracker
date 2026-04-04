@@ -144,6 +144,9 @@ kol-intel/
 | TechCrunch | RSS | Tech | techcrunch.com |
 | The Verge | RSS | Tech | theverge.com |
 | Macro Musings (David Beckworth) | RSS | Finance/Macro | macromusings.libsyn.com |
+| Marginal Revolution (Tyler Cowen) | RSS | Economics/Macro | marginalrevolution.com |
+| Calculated Risk | RSS | Finance/Macro | calculatedriskblog.com |
+| Humble Dollar (Jonathan Clements) | RSS | Finance/Investing | humbledollar.com |
 
 ### 已配置但暂时不可用
 
@@ -164,6 +167,7 @@ kol-intel/
 | AQR Capital (Cliff Asness) | RSS | Feed 无条目（疑似反爬拦截）|
 | Epsilon Theory (Ben Hunt) | RSS | Feed 无条目（疑似反爬拦截）|
 | Verdad Research | RSS | Feed 无条目（疑似反爬拦截）|
+| CFA Institute Blog | RSS | Feed 无条目（疑似反爬拦截）|
 
 ### 如何扩展数据源
 
