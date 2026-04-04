@@ -161,5 +161,40 @@
     "platforms": ["rss"],
     "sector": "Tech",
     "rss_url": "https://www.theverge.com/rss/index.xml"
+  },
+  {
+    "id": 19,
+    "name": "AQR Capital (Cliff Asness)",
+    "handle": "aqr",
+    "platforms": ["rss"],
+    "sector": "Finance/Quant",
+    "rss_url": "https://www.aqr.com/Insights/Research/rss",
+    "rss_status": "unavailable"
+  },
+  {
+    "id": 20,
+    "name": "Epsilon Theory (Ben Hunt)",
+    "handle": "epsilontheory",
+    "platforms": ["rss"],
+    "sector": "Finance/Macro",
+    "rss_url": "https://www.epsilontheory.com/feed/",
+    "rss_status": "unavailable"
+  },
+  {
+    "id": 21,
+    "name": "Verdad Research",
+    "handle": "verdad",
+    "platforms": ["rss"],
+    "sector": "Finance/Quant",
+    "rss_url": "https://verdadcap.com/feed",
+    "rss_status": "unavailable"
+  },
+  {
+    "id": 22,
+    "name": "Macro Musings (David Beckworth)",
+    "handle": "macromusings",
+    "platforms": ["rss"],
+    "sector": "Finance/Macro",
+    "rss_url": "https://macromusings.libsyn.com/rss"
   }
 ]

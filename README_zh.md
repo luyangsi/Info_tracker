@@ -131,15 +131,47 @@ kol-intel/
         └── daily.yml           # GitHub Actions 定时任务
 ```
 
-## KOL 覆盖范围
+## 📡 数据源
 
-| 行业 | 来源 |
-|---|---|
-| AI | Sam Altman, Andrej Karpathy, Yann LeCun, Andrew Ng, Jensen Huang, Demis Hassabis, Li Feifei |
-| VC / 创业 | Marc Andreessen, Paul Graham |
-| 金融 | Ray Dalio, Howard Marks, Michael Burry |
-| AI 博客 | Karpathy Blog, Paul Graham Essays |
-| 科技媒体 | Benedict Evans, VentureBeat AI, TechCrunch, The Verge |
+### 当前有效抓取源（实测可用）
+
+| 名称 | 类型 | 领域 | 来源 |
+|------|------|------|------|
+| Karpathy Blog | RSS | AI | karpathy.github.io |
+| Paul Graham Essays | RSS | Startup/Tech | paulgraham.com |
+| Benedict Evans Newsletter | RSS | Tech Strategy | ben-evans.com |
+| VentureBeat AI | RSS | AI/Tech | venturebeat.com |
+| TechCrunch | RSS | Tech | techcrunch.com |
+| The Verge | RSS | Tech | theverge.com |
+| Macro Musings (David Beckworth) | RSS | Finance/Macro | macromusings.libsyn.com |
+
+### 已配置但暂时不可用
+
+| 名称 | 平台 | 原因 |
+|------|------|------|
+| Sam Altman | X/LinkedIn | X API 未接入（$200/月）|
+| Andrej Karpathy | YouTube | YouTube RSS 限制该频道 |
+| Yann LeCun | X/LinkedIn | X API 未接入 |
+| Andrew Ng | YouTube | YouTube RSS 限制该频道 |
+| Jensen Huang (NVIDIA) | YouTube | YouTube RSS 限制该频道 |
+| Marc Andreessen | X | X API 未接入 |
+| Paul Graham | X | X API 未接入 |
+| Demis Hassabis | X/LinkedIn | X API 未接入 |
+| Li Feifei | X/LinkedIn | X API 未接入 |
+| Ray Dalio | X/LinkedIn | X API 未接入 |
+| Howard Marks | RSS | Oaktree RSS XML 损坏 |
+| Michael Burry | X | X API 未接入 |
+| AQR Capital (Cliff Asness) | RSS | Feed 无条目（疑似反爬拦截）|
+| Epsilon Theory (Ben Hunt) | RSS | Feed 无条目（疑似反爬拦截）|
+| Verdad Research | RSS | Feed 无条目（疑似反爬拦截）|
+
+### 如何扩展数据源
+
+在 `config/seeds.json` 中新增对象即可。支持的平台类型：
+- `rss`：直接填写 RSS URL
+- `youtube`：填写 youtube_channel_id（注意：部分大频道 RSS 被 YouTube 限制）
+- `wechat`：需要自托管 RSSHub + 搜狗微信 ID
+- `x`：需要 Twitter API v2 Basic（$200/月）
 
 ---
 

@@ -131,15 +131,47 @@ kol-intel/
         └── daily.yml           # GitHub Actions scheduled workflow
 ```
 
-## KOL Coverage
+## 📡 Data Sources
 
-| Sector | Sources |
-|---|---|
-| AI | Sam Altman, Andrej Karpathy, Yann LeCun, Andrew Ng, Jensen Huang, Demis Hassabis, Li Feifei |
-| VC / Startup | Marc Andreessen, Paul Graham |
-| Finance | Ray Dalio, Howard Marks, Michael Burry |
-| AI Blogs | Karpathy Blog, Paul Graham Essays |
-| Tech Media | Benedict Evans, VentureBeat AI, TechCrunch, The Verge |
+### Active (verified working)
+
+| Name | Type | Sector | Source |
+|------|------|--------|--------|
+| Karpathy Blog | RSS | AI | karpathy.github.io |
+| Paul Graham Essays | RSS | Startup/Tech | paulgraham.com |
+| Benedict Evans Newsletter | RSS | Tech Strategy | ben-evans.com |
+| VentureBeat AI | RSS | AI/Tech | venturebeat.com |
+| TechCrunch | RSS | Tech | techcrunch.com |
+| The Verge | RSS | Tech | theverge.com |
+| Macro Musings (David Beckworth) | RSS | Finance/Macro | macromusings.libsyn.com |
+
+### Configured but currently unavailable
+
+| Name | Platform | Reason |
+|------|----------|--------|
+| Sam Altman | X/LinkedIn | X API not connected ($200/mo) |
+| Andrej Karpathy | YouTube | YouTube RSS restricted for this channel |
+| Yann LeCun | X/LinkedIn | X API not connected |
+| Andrew Ng | YouTube | YouTube RSS restricted for this channel |
+| Jensen Huang (NVIDIA) | YouTube | YouTube RSS restricted for this channel |
+| Marc Andreessen | X | X API not connected |
+| Paul Graham | X | X API not connected |
+| Demis Hassabis | X/LinkedIn | X API not connected |
+| Li Feifei | X/LinkedIn | X API not connected |
+| Ray Dalio | X/LinkedIn | X API not connected |
+| Howard Marks | RSS | Oaktree RSS feed returns broken XML |
+| Michael Burry | X | X API not connected |
+| AQR Capital (Cliff Asness) | RSS | Feed returns no entries (bot-blocked) |
+| Epsilon Theory (Ben Hunt) | RSS | Feed returns no entries (bot-blocked) |
+| Verdad Research | RSS | Feed returns no entries (bot-blocked) |
+
+### How to add sources
+
+Add an entry to `config/seeds.json`. Supported platform types:
+- `rss`: provide an `rss_url` directly
+- `youtube`: provide a `youtube_channel_id` (note: some large channels have RSS restricted by YouTube)
+- `wechat`: requires self-hosted RSSHub + Sogou WeChat ID
+- `x`: requires Twitter API v2 Basic ($200/mo)
 
 ---
 
