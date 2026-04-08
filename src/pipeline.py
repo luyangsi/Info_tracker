@@ -68,12 +68,23 @@ def _call_claude(system: str, user: str) -> dict[str, Any]:
 
     client = anthropic.Anthropic(api_key=api_key)
 
-    response = client.messages.create(
-        model=_MODEL,
-        max_tokens=_MAX_TOKENS,
-        system=system,
-        messages=[{"role": "user", "content": user}],
-    )
+    _MAX_RETRIES = 5
+    for _attempt in range(_MAX_RETRIES):
+        try:
+            response = client.messages.create(
+                model=_MODEL,
+                max_tokens=_MAX_TOKENS,
+                system=system,
+                messages=[{"role": "user", "content": user}],
+            )
+            break
+        except anthropic.OverloadedError:
+            if _attempt < _MAX_RETRIES - 1:
+                _wait = 2 ** _attempt * 5  # 5, 10, 20, 40, 80 秒
+                print(f"[Claude] 529 Overloaded, retrying in {_wait}s (attempt {_attempt + 1}/{_MAX_RETRIES})")
+                time.sleep(_wait)
+            else:
+                raise
 
     raw_text: str = response.content[0].text
 
