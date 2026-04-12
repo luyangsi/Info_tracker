@@ -163,7 +163,18 @@ def _phase1_ingest(raw_posts: list[dict[str, Any]], date_str: str) -> dict[str, 
     """
     raw_posts_json = json.dumps(raw_posts, ensure_ascii=False, indent=2)
     user_prompt = PROMPT_1_INGEST.format(DATE=date_str, RAW_POSTS=raw_posts_json)
-    return _call_claude(system=SYSTEM_PROMPT, user=user_prompt)
+    result = _call_claude(system=SYSTEM_PROMPT, user=user_prompt)
+
+    # If Claude returned a bare list instead of the expected dict, wrap it
+    if isinstance(result, list):
+        result = {
+            "extraction_date": date_str,
+            "total_raw_items": len(raw_posts),
+            "items_passed": len(result),
+            "posts": result,
+        }
+
+    return result
 
 
 def _phase2_filter(structured: dict[str, Any]) -> dict[str, Any]:
